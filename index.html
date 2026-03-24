@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tal Pinkasovich</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Heebo:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --white: #FAFAFA;
+  --black: #0A0A0A;
+  --gray-1: #1A1A1A;
+  --gray-2: #333;
+  --gray-3: #666;
+  --gray-4: #999;
+  --gray-5: #CCC;
+  --gray-6: #E8E8E8;
+  --gray-7: #F2F2F2;
+  --red: #D63031;
+  --font-he: 'Heebo', sans-serif;
+  --font-en: 'Space Grotesk', sans-serif;
+  --mono: 'Space Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font-he);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body.en { font-family: var(--font-en); direction: ltr; }
+
+::selection { background: var(--black); color: var(--white); }
+
+/* ===== NAV ===== */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(250,250,250,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--gray-6);
+}
+
+.nav {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  text-decoration: none;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-right a {
+  color: var(--gray-3);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+
+.nav-right a:hover { color: var(--black); }
+
+.lang-sw {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border: 1px solid var(--gray-5);
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+  color: var(--gray-3);
+  transition: all 0.15s;
+  letter-spacing: 0.05em;
+}
+
+.lang-sw:hover { border-color: var(--black); color: var(--black); }
+
+/* ===== HERO ===== */
+.hero {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 140px 2rem 100px;
+}
+
+.hero-top {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--gray-4);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-bottom: 2rem;
+  max-width: 700px;
+}
+
+.hero h1 span { color: var(--gray-4); }
+
+.hero-bio {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--gray-2);
+  max-width: 580px;
+  font-weight: 300;
+}
+
+.hero-links {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+}
+
+.link-pill {
+  display: inline-block;
+  padding: 8px 18px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--gray-6);
+  border-radius: 3px;
+  color: var(--gray-2);
+  transition: all 0.15s;
+}
+
+.link-pill:hover { border-color: var(--black); color: var(--black); }
+
+.link-pill.primary {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+.link-pill.primary:hover { background: var(--gray-1); }
+
+/* ===== DIVIDER ===== */
+.divider {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  border: none;
+  border-top: 1px solid var(--gray-6);
+}
+
+/* ===== SECTION ===== */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 2rem;
+}
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--gray-4);
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gray-6);
+}
+
+/* ===== ARTICLES LIST ===== */
+.article-list { list-style: none; }
+
+.article-item {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--gray-6);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+
+.article-item:first-child { border-top: 1px solid var(--gray-6); }
+
+.article-item:hover { padding-right: 0.5rem; }
+.en .article-item:hover { padding-right: 0; padding-left: 0.5rem; }
+
+.article-item:hover .article-name { color: var(--red); }
+
+.article-date {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--gray-4);
+  white-space: nowrap;
+}
+
+.article-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  transition: color 0.15s;
+}
+
+.article-cat {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gray-4);
+  white-space: nowrap;
+  padding: 3px 8px;
+  border: 1px solid var(--gray-6);
+  border-radius: 2px;
+}
+
+/* ===== ABOUT GRID ===== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.about-col h3 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.about-col p {
+  font-size: 0.88rem;
+  color: var(--gray-3);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.about-col ul {
+  list-style: none;
+  margin-top: 0.5rem;
+}
+
+.about-col li {
+  font-size: 0.85rem;
+  color: var(--gray-3);
+  padding: 0.3rem 0;
+  font-weight: 400;
+}
+
+.about-col li::before {
+  content: '—';
+  margin-left: 0.5rem;
+  color: var(--gray-5);
+}
+
+.en .about-col li::before {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+/* ===== CONTACT ===== */
+.contact-block {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.contact-block a {
+  font-size: 0.88rem;
+  color: var(--gray-2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gray-5);
+  padding-bottom: 1px;
+  transition: all 0.15s;
+}
+
+.contact-block a:hover { color: var(--black); border-color: var(--black); }
+
+.contact-sep { color: var(--gray-5); font-size: 0.8rem; }
+
+/* ===== FOOTER ===== */
+footer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--gray-6);
+}
+
+footer span {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--gray-4);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 2.2rem; }
+  .article-item { grid-template-columns: 1fr; gap: 0.3rem; }
+  .article-date { order: 2; }
+  .article-cat { order: 3; justify-self: start; }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .nav-right a.hide-mobile { display: none; }
+  footer { flex-direction: column; gap: 0.5rem; }
+}
+
+/* ===== FADE IN ===== */
+.fi { opacity: 0; transform: translateY(12px); animation: fi 0.5s ease forwards; }
+.fi-1 { animation-delay: 0.05s; }
+.fi-2 { animation-delay: 0.1s; }
+.fi-3 { animation-delay: 0.15s; }
+.fi-4 { animation-delay: 0.2s; }
+@keyframes fi { to { opacity: 1; transform: none; } }
+
+/* ===== MOCKUP INDICATOR ===== */
+.mockup-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--black);
+  color: var(--gray-4);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  text-align: center;
+  padding: 6px;
+  z-index: 200;
+  letter-spacing: 0.1em;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="nav-name" href="#" id="navName">Tal Pinkasovich</a>
+    <div class="nav-right">
+      <a href="#writing" id="navWriting" data-he="כתיבה" data-en="Writing">כתיבה</a>
+      <a href="#building" data-he="מעבדה" data-en="Lab">מעבדה</a>
+      <a href="#about" id="navAbout" data-he="אודות" data-en="About">אודות</a>
+      <a href="#contact" id="navContact" data-he="צור קשר" data-en="Contact">צור קשר</a>
+      <button class="lang-sw" onclick="toggleLang()" id="langBtn">EN</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-top fi">talpinkas.com</div>
+  <h1 class="fi fi-1" id="heroTitle">Tal Pinkasovich <span>/</span><br>Indoor. Outdoor. Within.</h1>
+  <div class="hero-links fi fi-2">
+    <a href="https://www.linkedin.com/in/talpinkas/" target="_blank" class="link-pill primary">LinkedIn</a>
+    <a href="#writing" class="link-pill" id="heroArticlesLink" data-he="מאמרים" data-en="Articles">מאמרים</a>
+    <a href="#contact" class="link-pill" id="heroContactLink" data-he="צור קשר" data-en="Contact">צור קשר</a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- WRITING -->
+<section class="section" id="writing">
+  <div class="section-label" id="writingLabel" data-he="כתיבה" data-en="Writing">כתיבה</div>
+
+  <ul class="article-list" id="articleList">
+    <a class="article-item fi" href="https://www.jpost.com/defense-and-tech/article-890738" target="_blank">
+      <span class="article-date">03.2026</span>
+      <span class="article-name" data-he="The Paradox Machine: How the AI That Was Banned Won the War" data-en="The Paradox Machine: How the AI That Was Banned Won the War">The Paradox Machine: How the AI That Was Banned Won the War</span>
+      <span class="article-cat">JPost</span>
+    </a>
+    <a class="article-item fi fi-1" href="https://www.linkedin.com/pulse/paradox-machine-how-ai-banned-won-war-why-friction-tal-pinkasovich-fkvcc" target="_blank">
+      <span class="article-date">03.2026</span>
+      <span class="article-name" data-he="The Paradox Machine: Anthropic, the Pentagon, and the Friction That Matters" data-en="The Paradox Machine: Anthropic, the Pentagon, and the Friction That Matters">The Paradox Machine: Anthropic, the Pentagon, and the Friction That Matters</span>
+      <span class="article-cat">Defense</span>
+    </a>
+    <a class="article-item fi fi-2" href="https://www.linkedin.com/pulse/american-shahed-why-cheapest-drone-war-actually-most-tal-pinkasovich-ydrdf" target="_blank">
+      <span class="article-date">03.2026</span>
+      <span class="article-name" data-he="The American Shahed: Why the Cheapest Drone in the War Is Actually the Most Expensive" data-en="The American Shahed: Why the Cheapest Drone in the War Is Actually the Most Expensive">The American Shahed: Why the Cheapest Drone in the War Is Actually the Most Expensive</span>
+      <span class="article-cat">Defense</span>
+    </a>
+    <a class="article-item fi fi-3" href="https://www.linkedin.com/pulse/code-wins-wars-paradigm-shift-reshaping-western-tal-pinkasovich-abvrf" target="_blank">
+      <span class="article-date">02.2026</span>
+      <span class="article-name" data-he="Code Wins Wars: The Paradigm Shift Reshaping Western Defense" data-en="Code Wins Wars: The Paradigm Shift Reshaping Western Defense">Code Wins Wars: The Paradigm Shift Reshaping Western Defense</span>
+      <span class="article-cat">Defense</span>
+    </a>
+    <a class="article-item fi fi-4" href="https://www.linkedin.com/pulse/last-human-safety-catch-tal-pinkasovich-47akf" target="_blank">
+      <span class="article-date">02.2026</span>
+      <span class="article-name" data-he="The Last Human Safety Catch" data-en="The Last Human Safety Catch">The Last Human Safety Catch</span>
+      <span class="article-cat">Defense</span>
+    </a>
+    <a class="article-item fi fi-4" href="https://www.linkedin.com/pulse/your-backyard-new-front-line-calling-police-wont-help-tal-pinkasovich-bit6f" target="_blank">
+      <span class="article-date">02.2026</span>
+      <span class="article-name" data-he="Your Backyard Is the New Front Line: Calling the Police Won't Help" data-en="Your Backyard Is the New Front Line: Calling the Police Won't Help">Your Backyard Is the New Front Line: Calling the Police Won't Help</span>
+      <span class="article-cat">Defense</span>
+    </a>
+    <a class="article-item fi fi-4" href="https://www.linkedin.com/pulse/pricing-battlefield-what-human-life-costs-defense-tal-pinkasovich-dtzgf" target="_blank">
+      <span class="article-date">02.2026</span>
+      <span class="article-name" data-he="Pricing the Battlefield: What Human Life Costs Defense" data-en="Pricing the Battlefield: What Human Life Costs Defense">Pricing the Battlefield: What Human Life Costs Defense</span>
+      <span class="article-cat">Defense</span>
+    </a>
+  </ul>
+</section>
+
+<hr class="divider">
+
+<!-- BUILDING -->
+<section class="section" id="building">
+  <div class="section-label" data-he="מעבדה" data-en="Lab">מעבדה</div>
+
+  <ul class="article-list">
+    <a class="article-item fi" href="#" target="_blank">
+      <span class="article-date" style="color:var(--gray-3)">●</span>
+      <span class="article-name" data-he="CHOOSY" data-en="CHOOSY">CHOOSY</span>
+      <span class="article-cat" style="border:none;color:var(--gray-3);font-family:var(--font-he);text-transform:none;font-size:0.78rem;letter-spacing:0" data-he="תיאור יתווסף" data-en="Description coming soon">תיאור יתווסף</span>
+    </a>
+    <a class="article-item fi fi-1" href="#" target="_blank">
+      <span class="article-date" style="color:var(--gray-3)">●</span>
+      <span class="article-name" data-he="Pink Ace GTO" data-en="Pink Ace GTO">Pink Ace GTO</span>
+      <span class="article-cat" style="border:none;color:var(--gray-3);font-family:var(--font-he);text-transform:none;font-size:0.78rem;letter-spacing:0" data-he="תיאור יתווסף" data-en="Description coming soon">תיאור יתווסף</span>
+    </a>
+  </ul>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-label" id="aboutLabel" data-he="אודות" data-en="About">אודות</div>
+
+  <div class="about-grid">
+    <div class="about-col">
+      <h3 id="aboutWorkTitle" data-he="רקע מקצועי" data-en="Professional Background">רקע מקצועי</h3>
+      <p id="aboutWorkText" data-he="למעלה מעשור בפיתוח עסקי, תפעול וניהול מוצר בסטארטאפים טכנולוגיים. קצין מילואים בצה״ל. ניסיון בטכנולוגיות הגנה וביטחון לאומי." data-en="Over a decade in business development, operations, and product management at tech startups. IDF Reservist officer. Experienced in defense technology and national security.">למעלה מעשור בפיתוח עסקי, תפעול וניהול מוצר בסטארטאפים טכנולוגיים. קצין מילואים בצה״ל. ניסיון בטכנולוגיות הגנה וביטחון לאומי.</p>
+    </div>
+    <div class="about-col">
+      <h3 data-he="Indoor" data-en="Indoor">Indoor</h3>
+      <p data-he="Tech. Startups. Defense. EW. Space." data-en="Tech. Startups. Defense. EW. Space.">Tech. Startups. Defense. EW. Space.</p>
+      <h3 style="margin-top:1.5rem" data-he="Outdoor" data-en="Outdoor">Outdoor</h3>
+      <p data-he="Ultimate Frisbee. NLH. Nature. Food." data-en="Ultimate Frisbee. NLH. Nature. Food.">Ultimate Frisbee. NLH. Nature. Food.</p>
+      <h3 style="margin-top:1.5rem" data-he="Within" data-en="Within">Within</h3>
+      <p data-he="Family. Stoicism. Life." data-en="Family. Stoicism. Life.">Family. Stoicism. Life.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="section-label" id="contactLabel" data-he="צור קשר" data-en="Contact">צור קשר</div>
+  <div class="contact-block">
+    <a href="https://www.linkedin.com/in/talpinkas/" target="_blank">LinkedIn</a>
+    <span class="contact-sep">/</span>
+    <a href="mailto:talpinkas@gmail.com">talpinkas@gmail.com</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Tal Pinkasovich</span>
+  <span>talpinkas.com</span>
+</footer>
+
+<!-- MOCKUP BAR -->
+<div class="mockup-bar">MOCKUP — NOT A LIVE SITE</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+let lang = 'he';
+
+function toggleLang() {
+  lang = lang === 'he' ? 'en' : 'he';
+  const body = document.body;
+  const btn = document.getElementById('langBtn');
+  
+  if (lang === 'en') {
+    body.classList.add('en');
+    body.dir = '';
+    document.documentElement.lang = 'en';
+    document.documentElement.dir = 'ltr';
+    btn.textContent = 'עב';
+    
+    document.getElementById('heroTitle').innerHTML = 'Tal Pinkasovich <span>/</span><br>Indoor. Outdoor. Within.';
+  } else {
+    body.classList.remove('en');
+    body.dir = '';
+    document.documentElement.lang = 'he';
+    document.documentElement.dir = 'rtl';
+    btn.textContent = 'EN';
+    
+    document.getElementById('heroTitle').innerHTML = 'טל פנקסוביץ׳ <span>/</span><br>Indoor. Outdoor. Within.';
+  }
+  
+  document.querySelectorAll('[data-he][data-en]').forEach(el => {
+    el.textContent = el.getAttribute('data-' + lang);
+  });
+}
+</script>
+
+</body>
+</html>
