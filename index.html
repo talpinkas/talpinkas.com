@@ -346,19 +346,6 @@ footer span {
 .fi-4 { animation-delay: 0.2s; }
 @keyframes fi { to { opacity: 1; transform: none; } }
 
-/* ===== MOCKUP INDICATOR ===== */
-.mockup-bar {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  background: var(--black);
-  color: var(--gray-4);
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  text-align: center;
-  padding: 6px;
-  z-index: 200;
-  letter-spacing: 0.1em;
-}
 </style>
 </head>
 <body>
@@ -492,10 +479,8 @@ footer span {
   <span>talpinkas.com</span>
 </footer>
 
-<!-- MOCKUP BAR -->
-<div class="mockup-bar">MOCKUP — NOT A LIVE SITE</div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 let lang = 'he';
 
 function toggleLang() {
@@ -518,14 +503,4 @@ function toggleLang() {
     document.documentElement.dir = 'rtl';
     btn.textContent = 'EN';
     
-    document.getElementById('heroTitle').innerHTML = 'טל פנקסוביץ׳ <span>/</span><br>Indoor. Outdoor. Within.';
-  }
-  
-  document.querySelectorAll('[data-he][data-en]').forEach(el => {
-    el.textContent = el.getAttribute('data-' + lang);
-  });
-}
-</script>
-
-</body>
-</html>
+    document.getElementById('heroTitle').i
